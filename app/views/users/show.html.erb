@@ -1,0 +1,82 @@
+<section class="hero is-success">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        マイページ
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <figure class="image is-128×128" style="margin-left: auto; margin-right: auto;">
+              <%= attachment_image_tag @user, :profile_image, fallback: "no-image.png", class: "profile_image is-rounded" %>
+            </figure>
+          </div>
+          <div class="column is-8">
+            <table class="table is-fullwidth">
+              <tr>
+                <td class="is-size-4">
+                  <strong><%= @user.username %></strong>
+                </td>
+                <% if @user.id == current_user.id %>
+                  <td class="is-size-4">
+                    <%= @user.email %>
+                  </td>
+                  <td>
+                    <%= link_to "編集" ,edit_user_path(@user), class: "button is-primary" %>
+                  </td>
+                <% end %>
+              </tr>
+            </table>
+            <table class="table is-fullwidth">
+              <tr>
+                <td>
+                  <%= @user.profile %>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container">
+    <div class="columns is-multiline">
+      <% @user.inns.each do |inn| %>
+        <div class="column is-4">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <%= attachment_image_tag inn, :image, fallback: "no-image.png" %>
+              </figure>
+            </div>
+            <div class="card-content">
+              <div class="media">
+                <diV class="media-content">
+                  <%= link_to "詳細", inn_path(inn), class: "panel-block" %>
+                  <% if @user.id == current_user.id %>
+                    <%= link_to "編集", edit_inn_path(inn), class: "panel-block" %>
+                    <%= link_to "削除", inn_path(inn), method: :delete, data: {confirm: "本当に削除しますか？" }, class: "panel-block" %>
+                  <% end %>
+                </diV>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+
+
