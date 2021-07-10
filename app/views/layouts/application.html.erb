@@ -27,7 +27,7 @@
     <nav class="navbar is-link">
       <div class="navbar-brand">
         <%= link_to root_path, class: "navbar-item" do  %>
-          <h1 class="title is-4" style="font-family: cursive;">aaaaa</h1>
+          <h1 class="title is-4" style="font-family: cursive;">room.share.App</h1>
         <% end %>
         <div class="navbar-burger burger" data-target="navbarExampleTransparentExample">
           <span></span>
@@ -44,6 +44,12 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="field is-grouped">
+                <p  class="control">
+                  <%= form_tag(inns_path, :method => 'get') do %>
+                    <%= text_field_tag :search, params[:search]  %>
+                    <%= submit_tag '検索', :title => nil, :address => nil, class: "button is-info" %>
+                  <% end %>
+                </p>
                 <p  class="control">
                   <%= link_to "予約された部屋", reservation_path(current_user), class: "button is-warning is-light" %>
                 </p>

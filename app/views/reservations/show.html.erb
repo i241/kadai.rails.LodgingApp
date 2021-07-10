@@ -12,7 +12,7 @@
   <table>
     <thead>
       <tr>
-        <th>ルーム名</th>
+        <th>ルーム写真</th>
         <th>合計金額</th>
         <th>開始日</th>
         <th>終了日</th>
@@ -21,13 +21,15 @@
     </thead>
     <tbody>
       <% @reservations.each do |reservation|%>
-      <tr>
-        <th><%= reservation.room_id %></th>
-        <th><%= reservation.total_price %></th>
-        <th><%= reservation.start_date.to_s %></th>
-        <th><%= reservation.end_date.to_s %></th>
-        <th><%= reservation.created_at.to_s(:datetime_jp)  %></th>
-      </tr>
+        <% @inns.each do |inn| %>
+          <tr>
+            <th class="image is-3by2"><%= attachment_image_tag @inn, :image, fallback: "no-image.png" %></th>
+            <th><%= reservation.total_price %></th>
+            <th><%= reservation.start_date.to_s(:datetime_jp)  %></th>
+            <th><%= reservation.end_date.to_s(:datetime_jp) %></th>
+            <th><%= reservation.created_at.to_s(:datetime_jp)  %></th>
+          </tr>
+        <% end %>  
       <% end %>
     </tbody>
   </table>

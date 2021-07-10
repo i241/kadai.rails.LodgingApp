@@ -38,14 +38,14 @@
         </div>
         <div class="field">
           <%= form_for @reservation do |f| %>
-            <% f.hidden_field :start_date %>
-            <% f.hidden_field :end_date %>
-            <% f.hidden_field :people %>
-            <% f.hidden_field :many_days %>
-            <% f.hidden_field :total_price %>
-            <% f.hidden_field :user_id %>
-            <% f.hidden_field :room_id %>
-            <% f.submit "予約を確定する", class: "button is-success" %>
+            <%= f.hidden_field :start_date %>
+            <%= f.hidden_field :end_date %>
+            <%= f.hidden_field :people %>
+            <%= f.hidden_field :many_days %>
+            <%= f.hidden_field :total_price %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :room_id %>
+            <%= f.submit "予約を確定する", class: "button is-success" %>
           <% end %> 
         </div>
     </div>

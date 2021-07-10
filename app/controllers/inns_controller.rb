@@ -1,6 +1,6 @@
 class InnsController < ApplicationController
   def index
-    @inns = Inn.all
+    @inns = Inn.search(params[:search])
   end
 
   def show
@@ -16,6 +16,7 @@ class InnsController < ApplicationController
     @inn = Inn.new(inn_params)
     @inn.user_id = current_user.id
     @inn.save
+    flash[:notice] = "部屋の投稿が完了しました！"
     redirect_to inn_path(@inn)
   end
 
